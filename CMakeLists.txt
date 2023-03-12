@@ -20,6 +20,7 @@ file(
     "${CMAKE_CURRENT_SOURCE_DIR}/constexpr.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/final.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/override.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/template.cpp"
 )
 
 foreach(mainfile IN LISTS mains)

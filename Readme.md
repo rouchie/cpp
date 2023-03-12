@@ -72,3 +72,40 @@ class B : public A {
         // }
 };
 ```
+
+## template
+
+c++11 里优化了两个模板相关的内容
+
+1. 优化了右尖括号
+2. 优化了函数模板的默认参数
+
+```cpp
+template <typename T = int>
+class A {
+    public:
+        A(T t);
+};
+
+template <typename T>
+A<T>::A(T t)
+{
+    SPDLOG_INFO("type T({}) {}", typeid(t).name(), t);
+}
+
+template <typename T = std::string>
+void hello(T t)
+{
+    SPDLOG_INFO("hello type T({}) {}", typeid(t).name(), t);
+}
+
+A<int> a(1);
+A<std::string> b("www.baidu.com");
+A<> c(20);
+// A c(20); 不可以这么使用，类必须带上尖括号
+
+hello<int>(10);
+hello<std::string>("hello world");
+hello<>("www.bing.com");
+hello("www.hello.com");
+```
