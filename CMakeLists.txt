@@ -16,14 +16,14 @@ include_directories(
 
 file(
     GLOB_RECURSE mains RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}"
-    "${CMAKE_CURRENT_SOURCE_DIR}/a.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/constexpr.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/constructor.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/final.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/override.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/template.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/using.cpp"
-    "${CMAKE_CURRENT_SOURCE_DIR}/map.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/a.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/constexpr.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/constructor.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/final.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/override.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/template.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/using.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/map.cpp"
 )
 
 foreach(mainfile IN LISTS mains)
