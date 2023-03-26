@@ -18,9 +18,12 @@ file(
     GLOB_RECURSE mains RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}"
     "${CMAKE_CURRENT_SOURCE_DIR}/a.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/constexpr.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/constructor.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/final.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/override.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/template.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/using.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/map.cpp"
 )
 
 foreach(mainfile IN LISTS mains)

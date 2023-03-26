@@ -48,7 +48,7 @@ int main()
     hello<>("www.bing.com");
     hello("www.hello.com");
 
-    SPDLOG_INFO("{}", new A<int>(10));
+    // SPDLOG_INFO("{}", new A<int>(10));
 
     return 0;
 }

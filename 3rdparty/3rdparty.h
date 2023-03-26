@@ -1040,4 +1040,13 @@ private:
 };
 #endif
 
+#ifdef SPDLOG
+template<typename T>
+void show(T t) {
+	for (auto & it : t) {
+		SPDLOG_INFO("{} {}", it.first, it.second);
+	}
+}
+#endif
+
 #endif
