@@ -116,10 +116,11 @@
 					}
 	
 					for (j = i - i % 16; j <= i; j++) {
-                        if (buf[j] > 33 && buf[j] < 128)
+                        if (buf[j] > 33 && buf[j] < 128) {
 							printf("%c", buf[j]);
-						else
+						} else {
 							printf(".");
+						}
 					}
 				}
 	

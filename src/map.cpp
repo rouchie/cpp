@@ -7,6 +7,15 @@ int main()
     spdlog_init();
 
     std::map<int, std::string> m;
+    std::unordered_map<int, std::string> um;
+
+    for (auto i=0; i<100; i++) {
+        um[i] = fmt::format("string {}", i);
+    }
+
+    for (auto & it : um) {
+        SPDLOG_INFO("{} - {}", it.first, it.second);
+    }
 
     m.insert(std::make_pair(1, "hello"));
     m.insert(std::make_pair(2, "world"));
