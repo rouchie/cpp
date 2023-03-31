@@ -14,6 +14,7 @@ int main()
     }
 
     for (auto & it : um) {
+        // 听说go里的map固定元素每次遍历都会有不一样的结果，测试下c++里的unordered_map，至少在100个情况下是一样的
         SPDLOG_INFO("{} - {}", it.first, it.second);
     }
 
