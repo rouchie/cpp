@@ -6,6 +6,7 @@ int main()
 
     std::array<int32_t, 10> a0;
     std::array<int32_t, 20> a1{};
+    a1.at(0) = 123;
 
     a0.fill(1024);
 
@@ -32,6 +33,10 @@ int main()
 
     for (auto &ii = begin; ii < end; ii++) {
         ii += rand();
+    }
+
+    for (auto && v : a0) {
+        SPDLOG_INFO("[{}]", v);
     }
 
     return 0;
