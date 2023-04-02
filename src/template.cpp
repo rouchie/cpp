@@ -34,9 +34,17 @@ void hello(T t)
     SPDLOG_INFO("hello type T({}) {}", typeid(t).name(), t);
 }
 
+template <typename T>
+T& larger(T && a, T && b)
+{
+    return a > b ? a : b;
+}
+
 int main()
 {
     spdlog_init();
+
+    larger<double>(3, 2.5);
 
     A<int> a(1);
     A<std::string> b("www.baidu.com");

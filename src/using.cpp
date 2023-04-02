@@ -7,6 +7,9 @@ using FUNC = void (*)(int, int);
 template <typename T>
 using MAP = std::map<int, T>;
 
+template <typename T>
+using PTR = std::shared_ptr<T>;
+
 class A {
     public:
         A(int i) : _i(i) {}
