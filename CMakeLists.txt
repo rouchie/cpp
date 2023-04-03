@@ -23,6 +23,7 @@ file(
     "${CMAKE_CURRENT_SOURCE_DIR}/src/final.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/override.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/template.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/tuple.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/using.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/map.cpp"
 )
