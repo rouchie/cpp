@@ -1,5 +1,13 @@
 #include "3rdparty.h"
 
+template<typename T>
+void s(T & v)
+{
+    for (auto & ii : v) {
+        SPDLOG_INFO("[{}]", ii);
+    }
+}
+
 int main()
 {
     spdlog_init();
@@ -50,6 +58,50 @@ int main()
         for (auto c = std::begin(name); c < std::end(name); ++c) {
             SPDLOG_INFO("[{}]", *c);
         }
+    }
+
+    {
+        // 尾部插入，emplace_back效率比push_back高
+        std::vector<int> v;
+        v.push_back(1);
+        v.emplace_back(2);
+
+        v.insert(v.begin(), 3);
+        v.emplace(v.end(), 4);
+
+        v.insert(v.begin(), {5, 6, 7});
+
+        s(v);
+    }
+
+    {
+        std::vector<int> v{1, 2, 2, 3, 4, 5, 2, 2, 4};
+
+        SPDLOG_INFO("capacity [{}]", v.capacity());
+        v.pop_back();
+
+        // 去除多余的空间
+        v.shrink_to_fit();
+        SPDLOG_INFO("capacity [{}]", v.capacity());
+
+        v.erase(v.begin());
+
+        s(v);
+    }
+
+    {
+        SPDLOG_INFO("---");
+
+        std::vector<int> v{1, 2, 2, 3, 4, 5, 2, 2, 4};
+
+        // remove 本身并不删除元素，还会占有位置，可以配合erase删除
+        auto it = std::remove(std::begin(v), std::end(v), 2);
+        s(v);
+
+        SPDLOG_INFO("---");
+
+        v.erase(it, std::end(v));
+        s(v);
     }
 
     return 0;

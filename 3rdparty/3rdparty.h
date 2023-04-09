@@ -12,6 +12,7 @@
 #include <regex>
 #include <atomic>
 #include <algorithm>
+#include <utility>
 #include <memory>
 
 #include <vector>
@@ -1043,7 +1044,7 @@ private:
 
 #ifdef SPDLOG
 template<typename T>
-void show(T t) {
+void show(T & t) {
 	for (auto & it : t) {
 		SPDLOG_INFO("{} {}", it.first, it.second);
 	}
