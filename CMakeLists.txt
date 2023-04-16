@@ -22,6 +22,7 @@ file(
     "${CMAKE_CURRENT_SOURCE_DIR}/src/constructor.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/deque.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/final.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/for.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/map.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/override.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/template.cpp"

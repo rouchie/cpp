@@ -21,8 +21,11 @@ int main()
     m.insert(std::make_pair(1, "hello"));
     m.insert(std::make_pair(2, "world"));
     m.insert(std::make_pair(3, "ni"));
-    // 插入会失败
+    m.emplace(std::make_pair(4, "pink"));
+    // 插入会失败，值已经存在无法更新，只能使用数组方式更新
     m.insert(std::make_pair(3, "hao"));
+
+    show(m);
 
     // 但这种方式就可以
     m[3] = "buhao";
