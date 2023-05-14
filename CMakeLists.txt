@@ -29,6 +29,7 @@ file(
     "${CMAKE_CURRENT_SOURCE_DIR}/src/tuple.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/using.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/vector.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/virtual.cpp"
 )
 
 foreach(mainfile IN LISTS mains)
