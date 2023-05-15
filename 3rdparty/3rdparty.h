@@ -28,15 +28,14 @@
 #include <stdint.h>
 
 //{
-    // 用来测试类名，我也没用过
+    // 用来测试类名，挺好用的，直接定义 TD<decltype(z)> td; 即可以看编译报错，就知道z到底是什么类型了
     template<typename T> // 声明TD
     class TD;            // TD == "Type Displayer"
 
-	#define THROW(fmt, ...) {                                                                \
-		char buf[1024] = {0};                                                                \
-		snprintf(buf, sizeof(buf), "throw [%s:%d] " fmt, __FILE__, __LINE__, ##__VA_ARGS__); \
-		SPDLOG_ERROR("{}", buf);                                                             \
-		throw std::runtime_error(buf);                                                       \
+	#define THROW(ABC, ...) {                                                                \
+        std::string e = fmt::format("throw [{}:{}] " ABC, __FILE__, __LINE__, ##__VA_ARGS__);\
+		SPDLOG_ERROR("{}", e);                                                               \
+		throw std::runtime_error(e);                                                         \
 	}
 
     #define ssp(n) std::this_thread::sleep_for(std::chrono::seconds(n))
