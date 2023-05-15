@@ -62,6 +62,7 @@ template <typename T>
 void f2(T&& t)
 {
     SPDLOG_INFO("hello type T({}) {}", typeid(T).name(), t);
+    // TD<decltype(t)> td;
 }
 
 // 3. 普通类型
@@ -69,11 +70,19 @@ template <typename T>
 void f3(T t)
 {
     SPDLOG_INFO("hello type T({}) {}", typeid(T).name(), t);
+    // TD<decltype(t)> td;
 }
 
 int main()
 {
     spdlog_init();
+
+    {
+        int i = 10;
+        int && j = std::move(i);
+
+        SPDLOG_INFO("i[{}] j[{}]", i, j);
+    }
 
     // 类型推导情况1，引用或者指针
     {
@@ -97,7 +106,7 @@ int main()
         const int j = 20;
         const int & k = j;
         auto && z = i;      // 需要推导的类型，则就不是看到的&&，可能是左值引用也可能是右值引用
-        int && n = 20;
+        int && n = 20;             // 这个到底意味着什么
 
         f2(i);
         f2(j);
