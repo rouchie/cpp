@@ -40,9 +40,13 @@ int main()
     std::function<int(int)> f2 = A::hello;
     f2(3);
 
+    // 仿函数
     A a;
     std::function<void(int)> f3 = a;
     f3(1);
+
+    auto f4 = []() {};
+    f4();
 
     return 0;
 }
