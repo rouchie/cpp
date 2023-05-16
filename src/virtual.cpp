@@ -29,7 +29,7 @@ class C {
 };
 
 class D {
-    void *p;
+    void *p = nullptr;
 };
 
 int main()
