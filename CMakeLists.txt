@@ -33,6 +33,7 @@ file(
     "${CMAKE_CURRENT_SOURCE_DIR}/src/operator.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/override.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/pair.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/shared_ptr.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/template.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/tuple.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/using.cpp"
