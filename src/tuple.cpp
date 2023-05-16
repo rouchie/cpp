@@ -18,5 +18,13 @@ int main()
     // 越界会包编译错误
     // SPDLOG_INFO("2[{}]", std::get<2>(v));
 
+    auto t = []() -> std::tuple<int, double, long> {
+        return std::make_tuple(1, 2.3, 4);
+    }();
+
+    SPDLOG_INFO("0[{}]", std::get<0>(t));
+    SPDLOG_INFO("1[{}]", std::get<1>(t));
+    SPDLOG_INFO("2[{}]", std::get<2>(t));
+
     return 0;
 }

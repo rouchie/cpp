@@ -21,6 +21,7 @@ void f(int, int)
 
 template <typename T, typename ...A>
 void makeThread(T && f, A && ... a) {
+    SPDLOG_INFO("sizeof [{}]", sizeof...(a));
     std::thread(std::forward<T>(f), std::forward<A>(a)...).detach();
 }
 

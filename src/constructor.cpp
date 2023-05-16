@@ -41,9 +41,54 @@ class B : public A {
         }
 };
 
+class C {
+    public:
+        C(std::string s) : _s(s) {
+            SPDLOG_INFO("C");
+        }
+        ~C() {
+            SPDLOG_INFO("~C");
+        }
+
+        C(const C & c) {
+            SPDLOG_INFO("const C &");
+        }
+
+        C(C && c) {
+            SPDLOG_INFO("C &&");
+        }
+
+        C& operator=(const C & c) {
+            SPDLOG_INFO("operator= const C &");
+            return *this;
+        }
+
+        C& operator=(C && c) {
+            SPDLOG_INFO("operator= C &&");
+            this->_s = std::move(c._s);
+            return *this;
+        }
+
+        void hello() {
+            SPDLOG_INFO("hello[{}]", _s);
+        }
+
+    private:
+        std::string _s;
+};
+
 int main()
 {
     spdlog_init();
+
+    C c("world");
+    c = []() {
+        C c("hello");
+        c.hello();
+        return c;
+    }();
+
+    c.hello();
 
     A a0(0);
     A a1(1, 2);

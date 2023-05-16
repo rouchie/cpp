@@ -1,5 +1,14 @@
 #include "3rdparty.h"
 
+// constexpr 常量表达式
+// c++11 对常量表达式比较严格，很多情况下无法使用
+// c++14 则不一样，很宽松
+
+// 递归竟然也可以
+constexpr int fibonacci(const int n) {
+    return n == 1 || n == 2 ? 1 : fibonacci(n-1) + fibonacci(n-2);
+}
+
 constexpr int size()
 {
     return 10;
@@ -22,6 +31,11 @@ constexpr int height()
 int main()
 {
     spdlog_init();
+
+    SPDLOG_INFO("fibonacci(10) [{}]", fibonacci(10));
+
+    char arr[fibonacci(10)] = "www.rouchie.com";
+    SPDLOG_INFO("arr[{}]", arr);
 
     const int a = 10;
     constexpr int b = 3.14 * a * a;
