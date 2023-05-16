@@ -553,7 +553,7 @@
 //{ 创建一个线程
 	template <typename T, typename ...A>
     std::thread createThread(T && f, A && ... a) {
-		std::thread t(f, a...);
+		std::thread t(std::forward<T>(f), std::forward<A>(a)...);
 		t.detach();
         return t;
 	}

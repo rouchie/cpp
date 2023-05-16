@@ -24,6 +24,7 @@ file(
     "${CMAKE_CURRENT_SOURCE_DIR}/src/deque.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/final.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/for.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/forward.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/function.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/map.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/operator.cpp"
@@ -38,6 +39,7 @@ file(
 foreach(mainfile IN LISTS mains)
     get_filename_component(mainname ${mainfile} NAME_WE)
     add_executable(${mainname} ${mainfile})
+    target_link_libraries(${mainname} pthread m dl)
 
     install(TARGETS ${mainname} RUNTIME DESTINATION install)
 endforeach()
