@@ -56,5 +56,47 @@ int main()
         SPDLOG_INFO("value [{}]", shp->value());
     }
 
+    {
+        SPDLOG_INFO("async deferred");
+
+        auto f = std::async(std::launch::deferred, []() {
+            SPDLOG_INFO("call async deferred");
+            ssp(2);
+            return A(10000);
+        });
+
+        ssp(1);
+
+        SPDLOG_INFO("async deferred [{}]", f.get().value());
+    }
+
+    {
+        SPDLOG_INFO("async async");
+
+        auto f = std::async(std::launch::async, []() {
+            SPDLOG_INFO("call async async");
+            ssp(2);
+            return A(10000);
+        });
+
+        ssp(1);
+
+        SPDLOG_INFO("async async [{}]", f.get().value());
+    }
+
+    {
+        SPDLOG_INFO("async default");
+        // 默认策略，运行方式不一定
+        auto f = std::async([]() {
+            SPDLOG_INFO("call async default");
+            ssp(2);
+            return A(10000);
+        });
+
+        ssp(1);
+
+        SPDLOG_INFO("async default [{}]", f.get().value());
+    }
+
     return 0;
 }

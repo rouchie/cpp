@@ -19,6 +19,17 @@ class A {
             SPDLOG_INFO("operator= A &&");
             return *this;
         }
+
+        // 赋值语句: 是将一个int类型值赋值给A，A = int
+        A& operator=(int) {
+            SPDLOG_INFO("operator= int");
+            return *this;
+        }
+
+        // 隐式类型转换，是将A赋值给一个int类型的变量，int = A
+        operator int() {
+            return 10086;
+        }
 };
 
 // 字符串字面量自定义

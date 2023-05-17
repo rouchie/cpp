@@ -1,5 +1,6 @@
 #include "3rdparty.h"
 
+// [capture](parameters) mutable -> return-type { statement }
 // 1. 引用捕获可能导致悬挂引用
 // 2. lambda 只能捕获作用域内可见的非静态局部变量
 
@@ -45,6 +46,14 @@ class A {
 int main()
 {
     spdlog_init();
+
+    // [](){} 其中的()都可以省略
+    []{
+        SPDLOG_INFO("省略()");
+    }();
+
+    // 有mutable关键字时，不可以省略()
+    []() mutable {}();
 
     f0()(123);
     f1()(123);

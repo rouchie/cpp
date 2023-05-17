@@ -1,5 +1,10 @@
 #include "3rdparty.h"
 
+std::pair<uint32_t, std::string> idName()
+{
+    return std::make_pair(10086, "hello");
+}
+
 int main()
 {
     spdlog_init();
@@ -22,6 +27,11 @@ int main()
 
     for (auto & v : m) {
         SPDLOG_INFO("v first[{}] second[{}]", v.first, v.second);
+    }
+
+    {
+        auto p = idName();
+        SPDLOG_INFO("id[{}] name[{}]", p.first, p.second);
     }
 
     return 0;

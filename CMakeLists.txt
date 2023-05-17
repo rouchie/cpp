@@ -18,6 +18,7 @@ file(
     GLOB_RECURSE mains RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/a.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/array.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/atomic.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/bind.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/constexpr.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/constructor.cpp"
