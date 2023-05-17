@@ -21,9 +21,27 @@ class A {
         }
 };
 
+// 字符串字面量自定义
+
+std::string operator"" _hello(const char *s, size_t len)
+{
+    return std::string(s) + ", hello";
+}
+
+std::string operator"" _world(unsigned long long v)
+{
+    return std::to_string(v) + ", world";
+}
+
 int main()
 {
     spdlog_init();
+
+    std::string hello = "rouchie"_hello;
+    SPDLOG_INFO("{}", hello);
+
+    std::string world = 1024_world;
+    SPDLOG_INFO("{}", world);
 
     A a;
     SPDLOG_INFO("仿函数[{}]", a(20));
