@@ -32,6 +32,12 @@ A getA()
     return A();
 }
 
+A&& getA1()
+{
+    A a;
+    return std::move(a);
+}
+
 int main()
 {
     spdlog_init();
@@ -53,11 +59,12 @@ int main()
     // 常量右值引用, 不可以用左值初始化，只能用右值初始化
     const int && h = 7;
 
-    SPDLOG_INFO("i[{}] j[{}] n[{}]", i, j, n);
+    SPDLOG_INFO("i[{}] j[{}] n[{}] {} {} {} {}", i, j, n, z0, z1, z2, h);
 
     A a0 = getA();
     A && a1 = getA();
     A a2 = a0;
+    A && a3 = getA1();
 
     return 0;
 }
