@@ -59,6 +59,7 @@ int main()
     {
         SPDLOG_INFO("async deferred");
 
+        // 同步策略
         auto f = std::async(std::launch::deferred, []() {
             SPDLOG_INFO("call async deferred");
             ssp(2);
@@ -73,6 +74,7 @@ int main()
     {
         SPDLOG_INFO("async async");
 
+        // 异步策略
         auto f = std::async(std::launch::async, []() {
             SPDLOG_INFO("call async async");
             ssp(2);
