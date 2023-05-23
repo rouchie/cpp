@@ -25,6 +25,8 @@ class A {
             SPDLOG_INFO("operator A&&");
             return *this;
         }
+
+        void hello() {}
 };
 
 A getA()
@@ -65,6 +67,11 @@ int main()
     A && a1 = getA();
     A a2 = a0;
     A && a3 = getA1();
+
+    a0.hello();
+    a1.hello();
+    a2.hello();
+    a3.hello();
 
     return 0;
 }

@@ -40,9 +40,13 @@ file(
     "${CMAKE_CURRENT_SOURCE_DIR}/src/shared_ptr.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/template.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/tuple.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/unique_ptr.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/using.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/vector.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/virtual.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/volatile.cpp"
+
+    "${CMAKE_CURRENT_SOURCE_DIR}/designpattern/singleton.cpp"
 )
 
 foreach(mainfile IN LISTS mains)
