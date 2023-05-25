@@ -7,6 +7,7 @@ set(CMAKE_VERBOSE_MAKEFILE on)
 set(CMAKE_CXX_FLAGS "-std=c++14 ${CMAKE_CXX_FLAGS}")
 
 add_definitions(-DSPDLOG)
+add_definitions(-DNLOHMANN)
 
 add_definitions("-Wall")
 
@@ -27,6 +28,7 @@ file(
     "${CMAKE_CURRENT_SOURCE_DIR}/src/final.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/for.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/forward.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/friend.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/function.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/future.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/lambda.cpp"
