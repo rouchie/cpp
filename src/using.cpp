@@ -34,6 +34,12 @@ class B : public A {
         }
 };
 
+template <typename T>
+class C {
+    public:
+        std::remove_reference_t<T> a;
+};
+
 int main()
 {
     spdlog_init();

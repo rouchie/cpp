@@ -11,6 +11,13 @@
 函数模板经实例化后生成的具体函数称为模板函数
 */
 
+// 变长模板写法
+template <typename T, typename ...A>
+void makeThread(T && f, A && ... a) {
+    SPDLOG_INFO("sizeof [{}]", sizeof...(a));
+    std::thread(std::forward<T>(f), std::forward<A>(a)...).detach();
+}
+
 template <typename T = int>
 class A {
     public:
@@ -73,9 +80,93 @@ void f3(T t)
     // TD<decltype(t)> td;
 }
 
+template <typename T>
+void f4()
+{
+    // c++14才支持
+    // template<typename _Tp>
+    // using remove_reference_t = typename remove_reference<_Tp>::type;
+
+    std::remove_reference_t<T> a{};
+    a = a + a;
+
+    // TD<decltype(a)> td;
+    // TD<T> td;
+}
+
+// 奇怪的写法，
+template <typename ... T>
+void wrapper(T... t) {}
+
+template <typename T>
+T pr(T t)
+{
+    std::cout << t;
+    return t;
+}
+
+template <typename ... T>
+void world(T... t)
+{
+    SPDLOG_INFO("sizeof...t[{}]", sizeof...(t));
+    wrapper(pr(t)...);
+}
+
+// 还可以这样写，模板参数非类型
+template<int... v>
+class C{};
+
+template <typename T0, typename T1>
+class D {
+
+};
+
+template <typename... T>
+class E : private D<T...> {
+    public:
+        void hello() {}
+};
+
+// 非类型模板，递归
+template <long ... nums>
+struct M;
+
+template <long first, long ... last>
+struct M<first, last...> {
+    static const long val = first * M<last...>::val;
+};
+
+template<>
+struct M<> {
+    static const long val = 1;
+};
+
 int main()
 {
     spdlog_init();
+
+    {
+        // 不知道为什么编译报错了，书上明明就是这样写的
+        // SPDLOG_INFO("Multiply<1, 2, 3> = {}", M<1, 2, 3>::val);
+        // SPDLOG_INFO("Multiply<> = {}", M<>::val);
+    }
+
+    {
+        world(1, 2.3, "hello", 45);
+
+        C<1, 2, 3> c0;
+        C<1, 2, 3> c1 = c0;
+        c0 = c1;
+
+        E<int, std::string> e;
+        e.hello();
+    }
+
+    {
+        int a = 10;
+        int & b = a;
+        f4<decltype(b)>();
+    }
 
     {
         int i = 10;
