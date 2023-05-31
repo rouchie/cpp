@@ -25,6 +25,14 @@ void hello() noexcept
     throw std::logic_error{"hello"};
 }
 
+// 函数try块
+void world()
+try {
+    THROW("world throw");
+} catch(std::exception & e) {
+    SPDLOG_INFO("world catch exception: [{}]", e.what());
+}
+
 int main()
 {
     spdlog_init();
@@ -67,9 +75,19 @@ int main()
             throw std::logic_error{"logic error"};
         } catch(const std::exception & e) {
             SPDLOG_INFO("what [{}]", e.what());
+            // 重新抛出异常
+            // throw;
+        } catch(const int v) {
+            // 多catch
+        } catch(...) {
+            
         }
     }
 
+    {
+        world();
+    }
+    
     {
         try {
             hello();

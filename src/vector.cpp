@@ -8,9 +8,23 @@ void s(T & v)
     }
 }
 
+class A {
+    public:
+    A() = default;
+    A(const A&) = delete;
+    A& operator=(const A&) = delete;
+};
+
 int main()
 {
     spdlog_init();
+
+    {
+        // 默认删除拷贝构造和拷贝赋值的类，无法用 vector 作为容器，其他容器应该也差不多
+        std::vector<A> v;
+        // A a;
+        // v.push_back(a);
+    }
 
     std::vector<uint32_t> v;
 
