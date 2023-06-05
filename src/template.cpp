@@ -66,10 +66,11 @@ void f1(T& t)
 
 // 2. 通用引用
 template <typename T>
-void f2(T&& t)
+T f2(T&& t)
 {
     SPDLOG_INFO("hello type T({}) {}", typeid(T).name(), t);
     // TD<decltype(t)> td;
+    return t;
 }
 
 // 3. 普通类型
@@ -141,9 +142,29 @@ struct M<> {
     static const long val = 1;
 };
 
+// 模板和数组的引用
+// int &a[N]        a是一个数组，数组内容是引用
+// int (&a)[N]      a是一个引用，引用的是一个int[N]的数组
+template <typename T, size_t N>
+size_t f5(T (&a)[N])
+{
+    // 用来计算字符串的大小，好像很不错
+    return N;
+}
+
 int main()
 {
     spdlog_init();
+
+    {
+        char w[] = "world";
+
+        SPDLOG_INFO("len hello [{}]", f5("hello"));
+        SPDLOG_INFO("len({}) [{}]", w, f5(w));
+
+        const char (&a)[6] = "world";
+        f5(a);
+    }
 
     {
         // 不知道为什么编译报错了，书上明明就是这样写的
@@ -199,12 +220,18 @@ int main()
         auto && z = i;      // 需要推导的类型，则就不是看到的&&，可能是左值引用也可能是右值引用
         int && n = 20;             // 这个到底意味着什么
 
-        f2(i);
-        f2(j);
-        f2(k);
-        f2(30);
-        f2(n);
-        f2(z);
+        n+=1;
+
+        f2<std::string>("world");       // std::string &&
+        f2("hello");                    // const char (&)[6]
+        f2(z);                         // int &
+        f2(30);                         // int &&
+        f2(k);                          // const int &
+        f2(i);                         // int &
+        f2(n);                         // int &
+        f2(j);                          // const int &
+
+        // 可以看到 f2("hello") 类型被推导为 const char (&)[6]，数组引用
 
         // 可以用下面方式查看具体类型
         // TD<decltype(n)> td;
@@ -228,10 +255,18 @@ int main()
         f3(z);
     }
 
-    larger<double>(3, 2.5);
+    {
+        auto k = larger<double>(3, 2.5);
+        SPDLOG_INFO("k[{}]", k);
 
-    int i = 2;
-    larger(1, i); // 打印出来类型都是int，但其实应该是int，int&类型
+        // 下面这样的写法竟然是可以的，larger 返回了一个引用，因为n大，所以其实就是返回n本身，如果n小，则返回一个临时变量的引用
+        int n = 20;
+        larger(n, 2) = 10;
+        SPDLOG_INFO("n[{}]", n);
+
+        int i = 2;
+        larger(1, i); // 打印出来类型都是int，但其实应该是int，int&类型
+    }
 
     A<int> a(1);
     A<std::string> b("www.baidu.com");
