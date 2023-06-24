@@ -40,6 +40,7 @@ file(
     "${CMAKE_CURRENT_SOURCE_DIR}/src/pair.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/reference.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/regex.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/set.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/shared_ptr.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/template.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/throw.cpp"
