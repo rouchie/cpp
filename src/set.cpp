@@ -19,26 +19,11 @@ int main()
     spdlog_init();
 
     {
-        std::set<A> a;
-        a.emplace(A());
-        a.emplace(A());
-        a.emplace(A());
-        a.emplace(A());
-
-        for (auto it = a.begin(); it != a.end(); it++) {
-            // it->a = 1024;
-            // 返回的迭代器都是const类型的，所以没法直接赋值
-        }
-
         std::set<A*> b;
         b.emplace(new A);
         b.emplace(new A);
         b.emplace(new A);
         b.emplace(new A);
-
-        for (auto it = a.begin(); it != a.end(); it++) {
-            // (*it).a = 10;
-        }
     }
 
     std::set<int> s0 {1, 2, 3, 4, 10};

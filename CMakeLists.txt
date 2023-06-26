@@ -23,6 +23,7 @@ file(
     "${CMAKE_CURRENT_SOURCE_DIR}/src/bind.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/constexpr.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/constructor.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/count.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/decltype.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/deque.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/final.cpp"
