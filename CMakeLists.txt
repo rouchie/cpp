@@ -27,6 +27,7 @@ file(
     "${CMAKE_CURRENT_SOURCE_DIR}/src/decltype.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/deque.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/final.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/find.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/for.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/forward.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/friend.cpp"
