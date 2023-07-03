@@ -44,9 +44,40 @@ std::string operator"" _world(unsigned long long v)
     return std::to_string(v) + ", world";
 }
 
+struct C {
+    std::string name;
+    C(std::string n) : name(n) {} 
+};
+
+// 这里必须写在函数外面，卸载函数里面则编译错误
+bool operator==(const C & c0, const C & c1)
+{
+    return c0.name == c1.name;
+}
+
+struct B {
+    std::string name;
+    std::vector<C> habe;
+
+    bool operator==(const B & b) {
+        return this->name == b.name && this->habe == b.habe;
+    }
+};
+
 int main()
 {
     spdlog_init();
+
+    {
+        B a{"hello"};
+        B b{"hello"};
+        B c{"helloworld"};
+
+        a.habe.emplace_back("hello");
+        b.habe.emplace_back("hello");
+
+        SPDLOG_INFO("a==b({}) a==c({})", a==b, a==c);
+    }
 
     std::string hello = "rouchie"_hello;
     SPDLOG_INFO("{}", hello);

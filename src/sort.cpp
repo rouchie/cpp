@@ -1,5 +1,8 @@
 #include "3rdparty.h"
 
+// 支持 sort 的容器，vector/list/deque/array
+// map/set系列不支持sort函数
+
 // 没有定义 operator< 函数，不能直接调用sort函数，但是调用sort时可以直接定义cmp函数
 struct Hello {
     int a;
@@ -9,6 +12,12 @@ struct Hello {
 int main()
 {
     spdlog_init();
+
+    {
+        // 只有list容器有sort成员函数，使用的是归并排序，和std::stable_sort使用相同的算法
+        std::list<int> l {1, 2, 10, 5, 4, 3};
+        l.sort();
+    }
 
     auto show = [](std::vector<int> v) {
         for (auto & i : v) {
@@ -79,6 +88,14 @@ int main()
         std::vector<int> copy(4);
         std::partial_sort_copy(v.begin(), v.end(), copy.begin(), copy.end());
         show(copy);
+    }
+
+    {
+        // 对 std::unordered_map/map 使用排序直接报错
+        // std::unordered_map<int, std::string> m {{1, "hello"}, {2, "world"}};
+        // sort(m.begin(), m.end());
+        // std::map<int, std::string> m {{1, "hello"}, {2, "world"}};
+        // sort(m.begin(), m.end());
     }
 
     return 0;
