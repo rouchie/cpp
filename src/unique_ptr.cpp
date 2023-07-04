@@ -138,8 +138,14 @@ int main()
     SPDLOG_INFO("sizeof Deleter [{}]", sizeof(Deleter));
     SPDLOG_INFO("sizeof Some [{}]", sizeof(Some));
     
+    // unique_ptr 可以用在数组上，而shared_ptr不行
+    // 1. shared_ptr 根本没定义 opeator[] 函数，而unique_ptr有
+    // 2. unique_ptr 可以指定删除器，添加了删除器的unique_ptr和没添加删除器的unique_ptr就不是同一个类型了
+    // 3. shared_ptr 不能自定义删除器，但可以在对象中添加删除器类来达到相同目的
     // 无法得知数组的大小
     std::unique_ptr<int[]> arr(new int[10]);
+    std::shared_ptr<int[]> arr1(new int[10]);
+    arr1.get()[0] = 10;
 
     for (int i=0; i<10; i++) {
         // 可以直接操作 []
