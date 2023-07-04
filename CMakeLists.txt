@@ -24,6 +24,7 @@ file(
     "${CMAKE_CURRENT_SOURCE_DIR}/src/comparing.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/constexpr.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/constructor.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/copy.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/count.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/decltype.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/deque.cpp"
