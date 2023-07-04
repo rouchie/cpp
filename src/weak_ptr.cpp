@@ -59,5 +59,16 @@ int main()
     b->c = c;
     c->b = b;
 
+    {
+        std::shared_ptr<int> s = std::make_shared<int>(3);
+        std::weak_ptr<int> w = s;
+        auto l = w.lock();
+        if (l) {
+            SPDLOG_INFO("get");
+        } else {
+            SPDLOG_INFO("not get");
+        }
+    }
+
     return 0;
 }
