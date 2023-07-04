@@ -28,6 +28,10 @@ int main()
 
     std::vector<uint32_t> v;
 
+    // 没有元素直接调用，则会段错误
+    // auto first = v.front();
+    // SPDLOG_INFO("first [{}]", first);
+
     SPDLOG_INFO("size[{}] capacity[{}]", v.size(), v.capacity());
 
     v.push_back(1);
