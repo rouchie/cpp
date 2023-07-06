@@ -59,7 +59,7 @@ struct B {
     std::string name;
     std::vector<C> habe;
 
-    bool operator==(const B & b) {
+    bool operator==(const B & b) const {
         return this->name == b.name && this->habe == b.habe;
     }
 };

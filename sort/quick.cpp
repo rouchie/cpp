@@ -1,9 +1,12 @@
 #include "3rdparty.h"
 
+// O(nlogn) ~ O(n^2)
+
 // 快排
 // 1. 递归
 // 2. 找出一个点，点的左边都小，点的右边都大
 // 3. 在对两边进行排序
+
 void quick(std::vector<int> & arr, int left, int right)
 {
     if (left >= right) return;
