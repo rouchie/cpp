@@ -27,6 +27,12 @@ int main()
 
     std::vector<int> v {1, -10, 10, -100, 2, 5, 3, 100, 200};
 
+    {
+        // 会段错误
+        // sort(v.begin()+2, v.begin());
+        // show(v);
+    }
+
     // 判断是否已经排序
     auto sorted = std::is_sorted(v.begin(), v.end());
     SPDLOG_INFO("sorted[{}]", sorted);
