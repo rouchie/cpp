@@ -59,6 +59,8 @@ file(
     "${CMAKE_CURRENT_SOURCE_DIR}/src/weak_ptr.cpp"
 
     "${CMAKE_CURRENT_SOURCE_DIR}/designpattern/singleton.cpp"
+
+    "${CMAKE_CURRENT_SOURCE_DIR}/sort/quick.cpp"
 )
 
 foreach(mainfile IN LISTS mains)
