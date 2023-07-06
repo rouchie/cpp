@@ -7,7 +7,7 @@ Z add0(T t, R r)
     return t+r;
 }
 
-// c++11 写法
+// c++11 写法，尾随返回类型
 template <typename T, typename R>
 auto add1(T t, R r) -> decltype(t+r)
 {
