@@ -1051,6 +1051,14 @@ void show(T & t) {
 		SPDLOG_INFO("{} {}", it.first, it.second);
 	}
 }
+
+inline void show(std::vector<int> & v, std::string title="noname")
+{
+    SPDLOG_INFO("----------- [{}]", title);
+    for (auto & i : v) {
+        SPDLOG_INFO("value[{}]", i);
+    }
+}
 #endif
 
 #endif

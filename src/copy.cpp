@@ -1,14 +1,5 @@
 #include "3rdparty.h"
 
-void show(std::vector<int> & v, std::string title="noname")
-{
-    SPDLOG_INFO("----------- [{}]", title);
-    for (auto & i : v) {
-        SPDLOG_INFO("value[{}]", i);
-    }
-}
-
-
 int main()
 {
     spdlog_init();
