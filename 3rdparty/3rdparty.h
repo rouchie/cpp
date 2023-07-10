@@ -14,6 +14,7 @@
 #include <algorithm>
 #include <utility>
 #include <memory>
+#include <iterator>
 
 #include <vector>
 #include <deque>
