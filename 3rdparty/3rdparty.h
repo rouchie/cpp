@@ -1052,6 +1052,14 @@ void show(T & t) {
 	}
 }
 
+inline void show(std::deque<int> & v, std::string title="noname")
+{
+    SPDLOG_INFO("----------- [{}]", title);
+    for (auto & i : v) {
+        SPDLOG_INFO("value[{}]", i);
+    }
+}
+
 inline void show(std::vector<int> & v, std::string title="noname")
 {
     SPDLOG_INFO("----------- [{}]", title);

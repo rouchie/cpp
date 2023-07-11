@@ -6,6 +6,20 @@
 int main()
 {
     spdlog_init();
+    std::deque<int> d;
+
+    int i = 0;
+    std::generate_n(std::front_inserter(d), 10, [&i]() {
+        return ++i;
+    });
+
+    show(d, "front insert");
+
+    std::generate_n(std::back_inserter(d), 10, [&i]() {
+        return ++i;
+    });
+
+    show(d, "back insert");
 
     return 0;
 }
