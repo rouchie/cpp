@@ -51,6 +51,7 @@ file(
     "${CMAKE_CURRENT_SOURCE_DIR}/src/set.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/shared_ptr.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/sort.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/stack.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/template.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/throw.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/transform.cpp"
