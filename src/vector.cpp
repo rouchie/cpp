@@ -1,5 +1,7 @@
 #include "3rdparty.h"
 
+// vector 并没有系列的 front_push 函数，之前一直以为是有的，而 deque 则有前后的系列函数
+
 template<typename T>
 void s(T & v)
 {

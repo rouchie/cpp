@@ -22,7 +22,7 @@ int main()
     std::generate_n(v.begin(), 5, [&i]() { return ++i; });
     show(v, "after generate_n");
 
-    // 跟 go 语言里的 IOTA 很像，赋值，递增
+    // 跟 go 语言里的 Iota 很像，赋值，递增
     std::iota(v.begin(), v.end(), 10);
     show(v, "after iota");
 
