@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>rouchie.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%E9%99%88%E5%A6%82%E5%A5%87">陈如奇</h1>
+<pre class="hljs"><code><div>15088769577 男 32岁
+绍兴文理学院 2010-2014 本科|自动化 大学英语四级 462
+</div></code></pre>
+<h2 id="%E4%B8%AA%E4%BA%BA%E4%BC%98%E5%8A%BF">个人优势</h2>
+<ul>
+<li>扎实的c/c++基础，良好的代码编程风格</li>
+<li>熟悉goland、Qt、Mysql、sqlite3、opencv、ffmpeg开发</li>
+<li>熟悉shell、Makefile</li>
+<li>熟悉网络编程、音视频编解码</li>
+<li>熟悉并发框架开发、流媒体服务开发</li>
+</ul>
+<hr>
+<h2 id="%E5%B7%A5%E4%BD%9C%E7%BB%8F%E9%AA%8C">工作经验</h2>
+<h3 id="%E6%B5%99%E6%B1%9F%E4%BA%92%E7%81%B5%E7%A7%91%E6%8A%80%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8">浙江互灵科技有限公司</h3>
+<p>工作职责</p>
+<ol>
+<li>整体框架搭建</li>
+<li>AI算法功能集成</li>
+<li>平台协议开发</li>
+<li>视频编解码</li>
+</ol>
+<h3 id="%E6%B5%99%E6%B1%9F%E5%A4%A7%E7%AB%8B%E7%A7%91%E6%8A%80%E8%82%A1%E4%BB%BD%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8">浙江大立科技股份有限公司</h3>
+<p>工作职责</p>
+<ol>
+<li>流媒体服务器(rtsp，rtmp，http-flv，websocket- flv)开发</li>
+<li>并发框架搭建</li>
+<li>嵌入式qt界面开发</li>
+<li>onvif及qb28181工作中也涉及部分后端程序开发及维护</li>
+<li>基于Qt开发各种测试工具及视频流解码播放工具等</li>
+</ol>
+<h3 id="%E5%85%B0%E9%82%BB%E7%A7%91%E6%8A%80%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8">兰邻科技有限公司</h3>
+<p>工作职责</p>
+<ol>
+<li>主要负责后端开发，系统架构维护开发，salite数据库性能优化，配合测试修复bug</li>
+</ol>
+<h3 id="%E8%BD%AF%E9%80%9A%E5%8A%A8%E5%8A%9B">软通动力</h3>
+<p>工作职责</p>
+<ol>
+<li>开发加速芯片nnie测试驱动开发，测试框架搭建</li>
+</ol>
+<h3 id="%E4%BA%A4%E5%A4%A7%E5%BE%AE%E8%81%94%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8">交大微联有限公司</h3>
+<p>工作职责</p>
+<ol>
+<li>负责linux系统的移植和驱动的裁剪，Qt开发交互界面。</li>
+<li>负责vxworks系统的维护和优化，终端交互界面的编写，相应接口程序编写。</li>
+<li>平台协议开发</li>
+</ol>
+<hr>
+<h2 id="%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C">项目经验</h2>
+<h3 id="%E7%AE%97%E6%B3%95%E7%9B%92%E5%AD%90">算法盒子</h3>
+<p>2023.1-至今</p>
+<ol>
+<li>项目功能是做算法盒子，支持人车结构化信息、动作检测，单双拌线、区域进入离开等算法，目前还在开发中</li>
+<li>设备结构:海康机芯/赛宇机芯+ax630主板/ax620主板+旷视AI算法</li>
+<li>涉及的技术点<br>
+web服务，webrtc服务，ffmpeg，live555，sdl，旷视Al算法集成，h264/h265硬件编解码，onvif客户端，sqlite3</li>
+<li>工作内容<br>
+搭建软件框架结构，支持4路独立算法
+<ol>
+<li>基于go/gin开源库搭建web服务，提供httpapi功能接口</li>
+<li>基于go/webrtc开源库搭建rtsp转webrtc服务网页播放采用webrtc方式</li>
+<li>ffmpeg rtsp+h264/h265硬件编解码</li>
+<li>平台协议开发，客流、拥堵、人结构化等上报信息</li>
+<li>onvif客户端集成，主要涉及osd叠加，ptz控制</li>
+<li>live555rtsp服务搭建</li>
+<li>旷视AI算法集成，算法基类及各个功能派生类开发</li>
+</ol>
+</li>
+</ol>
+<h3 id="%E8%AD%A6%E5%AE%89%E5%8D%AB%E5%A3%AB">警安卫士</h3>
+<p>2022.7-2022.12</p>
+<ol>
+<li>项目功能是做人脸、周界算法集成</li>
+<li>设备组成:海康球机+爱芯630主板+旷视ai算法+音频</li>
+<li>涉及的技术点<br>
+nginx反向代理、lighttpd服务、h264/h265编解码 ffmpegrtsp拉流、流媒体服务搭建、MP3解码+sdl播放音频、socket通信、sqlite3</li>
+<li>工作内容<br>
+整体软件框架搭建基于c++11
+<ol>
+<li>ffmpeg拉流+硬件编解码</li>
+<li>人脸库增删改查模块</li>
+<li>人脸、周界算法模块</li>
+<li>音频告警模块</li>
+<li>平台通信模块<br>
+平台主要支持的功能，人脸的增删改查、告警上报、人脸周界告警信息配置、设备升级</li>
+<li>web通信模块<br>
+web主要支持的功能，网络信息配置、设备初始化信息配置、人脸的增删改查、告警上报、人脸周界告警信息配置、设备升级</li>
+<li>onvif客户端模块</li>
+<li>日志模块</li>
+<li>设备发现模块</li>
+<li>led告警灯模块</li>
+<li>设备升级模块</li>
+<li>设备搜索工具</li>
+<li>远程日志工具</li>
+</ol>
+</li>
+</ol>
+<h3 id="%E5%B0%8F%E7%9B%AE%E6%A0%87%E6%90%9C%E7%B4%A2%E8%B7%9F%E8%B8%AA">小目标搜索跟踪</h3>
+<p>2020.1-20226 所属公司:浙江大立科技股份有限公司</p>
+<ol>
+<li>websocket 服务器开发及维护，与网页通信协议制定及开发，软件整体通信框架搭建</li>
+</ol>
+<h3 id="%E5%8F%8C%E5%85%89%E6%9C%9B%E8%BF%9C%E9%95%9C">双光望远镜</h3>
+<p>2019.1-2020.12 所属公司:浙江大立科技股份有限公司</p>
+<ol>
+<li>项目功能是做双光望远镜，支持红外和白光</li>
+<li>设备结构:红外/白光+hi3519主板+qps+罗盘+lcd</li>
+<li>涉及的技术点<br>
+Qt、串口协议、sqlite</li>
+<li>工作内容
+<ol>
+<li>基于Qt开发望远镜界面</li>
+<li>gps串口协议集成</li>
+<li>罗盘串口协议集成</li>
+<li>第三方串口协议开发，定制协议根据客户需要开发</li>
+<li>红外串口协议集成，主要包含变倍、调焦、增强、对比度等协议</li>
+</ol>
+</li>
+</ol>
+<h3 id="%E6%B5%81%E5%AA%92%E4%BD%93%E6%9C%8D%E5%8A%A1%E5%99%A8">流媒体服务器</h3>
+<p>2019.1-2022.4</p>
+<ol>
+<li>rtsp、rtmp、websocket-flv、http-flv协议开发</li>
+</ol>
+<h3 id="%E6%99%BA%E8%83%BD%E4%BA%A4%E9%80%9A%E8%A7%86%E9%A2%91%E7%9B%91%E6%8E%A7">智能交通视频监控</h3>
+<p>2018.5-2019.1</p>
+<p>该项目主要实现闸口相机监控抓拍除玻，并传输至相应服务器端进行储存及查询主要职责:</p>
+<ol>
+<li>负责相机及服务器web后端代码编写</li>
+<li>负责服务器端存储框架搭建及代码编写</li>
+<li>负责服务端sqlite向mvsgl迁移，及相机的sqlite代码开发</li>
+<li>底层log日志系统，相机及服务器远程升级功能开发</li>
+</ol>
+<h3 id="ai%E6%8E%A8%E7%90%86%E5%8A%A0%E9%80%9F%E5%99%A8%E8%8A%AF%E7%89%87">AI推理加速器芯片</h3>
+<p>2016.6-2018.5</p>
+<ol>
+<li>业务测试框架开发</li>
+<li>nnie芯片 测试驱动开发</li>
+<li>caffe 模型随机生成工具开发</li>
+</ol>
+<h3 id="%E6%9C%BA%E8%BD%A6%E6%95%B0%E6%8D%AE%E8%BD%AC%E5%82%A8%E9%A1%B9%E7%9B%AE">机车数据转储项目</h3>
+<p>2014.9-2016.6</p>
+<ol>
+<li>负责在linux系统的移植和驱动的裁剪，Qt开发交互界面，平台协议开发</li>
+</ol>
+
+</body>
+</html>
