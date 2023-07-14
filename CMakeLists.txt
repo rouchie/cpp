@@ -67,6 +67,7 @@ file(
 
     "${CMAKE_CURRENT_SOURCE_DIR}/designpattern/singleton.cpp"
 
+    "${CMAKE_CURRENT_SOURCE_DIR}/sort/merge.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/sort/quick.cpp"
 )
 
