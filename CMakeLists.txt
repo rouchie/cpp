@@ -69,6 +69,8 @@ file(
 
     "${CMAKE_CURRENT_SOURCE_DIR}/sort/merge.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/sort/quick.cpp"
+
+    "${CMAKE_CURRENT_SOURCE_DIR}/tree/bst.cpp"
 )
 
 foreach(mainfile IN LISTS mains)
