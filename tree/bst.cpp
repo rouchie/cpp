@@ -2,6 +2,9 @@
 
 #include "tree.h"
 
+// 二叉搜索树，排序的二叉树，并且没有重复值
+// 下面的示例我没有特意去处理重复值
+
 template <typename T>
 class CBst {
     public:
@@ -12,6 +15,8 @@ class CBst {
         void insert0(const T & v);
         void insert1(const T & v);
         void insert2(const T & v);
+
+        void remove(const T & v);
 
         // 层次遍历，属于广度优先搜索
         void leverOrder();
@@ -98,6 +103,46 @@ void insert(Node<T> * root, Node<T> * node)
     }
 }
 
+// 删除节点分三种情况
+// 1. 没有子节点，直接删除就行
+// 2. 只有一个子节点，返回子节点就行，删除当前的
+// 3. 有两个子节点，将右节点侧最小值赋值到当前，然后删除最小值，或则将左节点最大值赋值到当前值，删除最大值
+template <typename T>
+Node<T> * remove(Node<T> * root, const T & v)
+{
+    if (root == nullptr) return nullptr;
+
+    if (root->value == v) {
+        if (root->left == nullptr && root->right == nullptr) {
+            delete root;
+            return nullptr;
+        } else if (root->right == nullptr) {
+            auto *p = root->left;
+            delete root;
+            return p;
+        } else if (root->left == nullptr) {
+            auto *p = root->right;
+            delete root;
+            return p;
+        } else {
+            // 查找右边最小值
+            Node<T> * p = root->right;
+            while (p->left) {
+                p = p->left;
+            }
+
+            root->value = p->value;
+            root->right = remove(root->right, p->value);
+        }
+    } else if (root->value < v) {
+        root->left = remove(root->left, v);
+    } else {
+        root->right = remove(root->right, v);
+    }
+
+    return root;
+}
+
 template <typename T>
 int height(Node<T> * node, int h)
 {
@@ -130,7 +175,7 @@ void CBst<T>::insert0(const T & v)
 
     Node<T> * t = m_root;
     while(1) {
-        if (t->value >= pNode->value) {
+        if (t->value > pNode->value) {
             if (t->left == nullptr) {
                 t->left = pNode;
                 return ;
@@ -169,6 +214,12 @@ void CBst<T>::insert2(const T & v)
     m_root = insertOther(m_root, new Node<T>{v});
 }
 
+template <typename T>
+void CBst<T>::remove(const T & v)
+{
+    m_root = ::remove(m_root, v);
+}
+        
 // 层次遍历，关键的就是需要一个队列用来保存当前层的节点
 template <typename T>
 void CBst<T>::leverOrder()
@@ -279,6 +330,9 @@ int main()
     bst.preorder();
     bst.inorder();
     bst.postorder();
+
+    bst.remove(10);
+    bst.preorder();
 
     return 0;
 }
