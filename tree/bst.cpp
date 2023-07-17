@@ -29,9 +29,6 @@ class CBst {
         T min();
         T max();
 
-        void depthFirst();
-        void breadthFirst();
-
         int height();
 
     private:
@@ -221,6 +218,7 @@ void CBst<T>::remove(const T & v)
 }
         
 // 层次遍历，关键的就是需要一个队列用来保存当前层的节点
+// 还有一种递归方式，但是不推荐使用，递归方式必须在全部递归结束，才能再次遍历结果，需要借助二维数组
 template <typename T>
 void CBst<T>::leverOrder()
 {
@@ -245,7 +243,16 @@ template <typename T>
 void CBst<T>::preorder()
 {
     SPDLOG_INFO("preorder --------------------- ");
-    ::preorder(m_root);
+    // ::preorder(m_root);
+
+    std::function<void(Node<T> *)> f = [&](Node<T> * node) {
+        if (node == nullptr) return ;
+        SPDLOG_INFO("value [{}]", node->value);
+        f(node->left);
+        f(node->right);
+    };
+
+    f(m_root);
 }
 
 template <typename T>

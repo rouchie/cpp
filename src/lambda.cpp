@@ -43,9 +43,25 @@ class A {
         int age = 40;
 };
 
+// 匿名函数可以在模板中使用，并且还是递归
+template <typename T>
+void hello()
+{
+    std::function<T (T)> f = [&](T t) {
+        if (t == 0) return 0;
+        return t+f(t-1);
+    };
+
+    SPDLOG_INFO("0 加到 100 等于 [{}]", f(100));
+    SPDLOG_INFO("0 加到 1000 等于 [{}]", f(1000));
+    SPDLOG_INFO("0 加到 10000 等于 [{}]", f(10000));
+}
+
 int main()
 {
     spdlog_init();
+
+    hello<int>();
 
     // [](){} 其中的()都可以省略
     []{
