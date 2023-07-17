@@ -44,6 +44,26 @@ void preorder(Node<T> * node)
     preorder(node->right);
 }
 
+// 前序遍历，非递归方法，主要就是借助stack功能
+template <typename T>
+void preorderV1(Node<T> * node)
+{
+    if (node == nullptr) return ;
+
+    std::stack<Node<T> *> s;
+
+    while (node || !s.empty()) {
+        while (node) {
+            SPDLOG_INFO("value [{}]", node->value);
+            s.push(node);
+            node = node->left;
+        }
+
+        node = s.top(); s.pop();
+        node = node->right;
+    }
+}
+
 template <typename T>
 void inorder(Node<T> * node)
 {
@@ -53,6 +73,26 @@ void inorder(Node<T> * node)
     inorder(node->right);
 }
 
+// 中序遍历，非递归方法，主要就是借助stack功能
+template <typename T>
+void inorderV1(Node<T> * node)
+{
+    if (node == nullptr) return ;
+
+    std::stack<Node<T> *> s;
+
+    while (node || !s.empty()) {
+        while (node) {
+            s.push(node);
+            node = node->left;
+        }
+
+        node = s.top(); s.pop();
+        SPDLOG_INFO("value [{}]", node->value);
+        node = node->right;
+    }
+}
+
 template <typename T>
 void postorder(Node<T> * node)
 {
@@ -60,6 +100,33 @@ void postorder(Node<T> * node)
     postorder(node->left);
     postorder(node->right);
     SPDLOG_INFO("value [{}]", node->value);
+}
+
+// 后序遍历，非递归方法，主要就是借助stack功能，还需要借助一个临时变量
+template <typename T>
+void postorderV1(Node<T> * node)
+{
+    if (node == nullptr) return ;
+
+    std::stack<Node<T> *> s;
+    Node<T> * last;
+
+    while (node || !s.empty()) {
+        while (node) {
+            s.push(node);
+            node = node->left;
+        }
+
+        node = s.top();
+        if (node->right == nullptr || node->right == last) {
+            SPDLOG_INFO("value [{}]", node->value);
+            s.pop();
+            last = node;
+            node = nullptr;
+        } else {
+            node = node->right;
+        }
+    }
 }
 
 template <typename T>
@@ -242,9 +309,10 @@ void CBst<T>::leverOrder()
 template <typename T>
 void CBst<T>::preorder()
 {
-    SPDLOG_INFO("preorder --------------------- ");
-    // ::preorder(m_root);
+    SPDLOG_INFO("preorder --------------------- 非递归");
+    preorderV1(m_root);
 
+    SPDLOG_INFO("preorder --------------------- 递归");
     std::function<void(Node<T> *)> f = [&](Node<T> * node) {
         if (node == nullptr) return ;
         SPDLOG_INFO("value [{}]", node->value);
@@ -258,14 +326,20 @@ void CBst<T>::preorder()
 template <typename T>
 void CBst<T>::inorder()
 {
-    SPDLOG_INFO("inorder --------------------- ");
+    SPDLOG_INFO("inorder --------------------- 非递归");
+    ::inorderV1(m_root);
+
+    SPDLOG_INFO("inorder --------------------- 递归");
     ::inorder(m_root);
 }
 
 template <typename T>
 void CBst<T>::postorder()
 {
-    SPDLOG_INFO("postorder --------------------- ");
+    SPDLOG_INFO("postorder --------------------- 非递归");
+    ::postorderV1(m_root);
+
+    SPDLOG_INFO("postorder --------------------- 递归");
     ::postorder(m_root);
 }
 
