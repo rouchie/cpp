@@ -21,5 +21,9 @@ int main()
 
     show(d, "back insert");
 
+    // 支持随机访问迭代器
+    SPDLOG_INFO("value [{}]", *d.begin()+5);
+    SPDLOG_INFO("value [{}]", *(d.begin()+5));
+
     return 0;
 }
