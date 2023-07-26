@@ -44,6 +44,28 @@
     #define msp(n) std::this_thread::sleep_for(std::chrono::milliseconds(n))
     #define usp(n) std::this_thread::sleep_for(std::chrono::microseconds(n))
 
+	inline std::string now()
+	{
+		// 获取当前时间的时间点
+		std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
+
+		// 将时间点转换为时间结构体
+		std::time_t now_time = std::chrono::system_clock::to_time_t(now);
+
+		// 将时间结构体转换为字符串
+		char time_str[100];
+		std::strftime(time_str, sizeof(time_str), "%Y-%m-%d %H:%M:%S", std::localtime(&now_time));
+
+		// 获取当前时间的毫秒部分
+		auto duration = now.time_since_epoch();
+		auto milliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(duration) % 1000;
+
+		std::ostringstream oss;
+		oss << time_str << "." << (uint64_t)milliseconds.count();
+
+		return oss.str();
+	}
+
     inline uint64_t getUS()
 	{
 		auto tp = std::chrono::time_point_cast<std::chrono::microseconds>(std::chrono::system_clock::now());

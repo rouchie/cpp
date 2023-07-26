@@ -22,6 +22,7 @@ file(
     "${CMAKE_CURRENT_SOURCE_DIR}/src/atomic.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/bind.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/comparing.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/condition_variable.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/constexpr.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/constructor.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/copy.cpp"
