@@ -44,6 +44,10 @@
     #define msp(n) std::this_thread::sleep_for(std::chrono::milliseconds(n))
     #define usp(n) std::this_thread::sleep_for(std::chrono::microseconds(n))
 
+    #define SSP(n) std::this_thread::sleep_for(std::chrono::seconds(n))
+    #define MSP(n) std::this_thread::sleep_for(std::chrono::milliseconds(n))
+    #define USP(n) std::this_thread::sleep_for(std::chrono::microseconds(n))
+
 	inline std::string now()
 	{
 		// 获取当前时间的时间点

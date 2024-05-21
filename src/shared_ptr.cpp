@@ -52,6 +52,8 @@ int main()
         std::shared_ptr<A> shp(new A);
         shp->hello();
         SPDLOG_INFO("sizeof shared_ptr [{}]", sizeof(shp));
+        shp.reset();
+        SPDLOG_INFO("reset 就会注销，没其他链接的话，就会析构");
     }
  
     {

@@ -43,5 +43,15 @@ int main()
 
     f1();
 
+    {
+        // 返回的是旧值
+        std::atomic<int> a{10};
+        int b = std::atomic_fetch_add(&a, 1);
+        SPDLOG_INFO("a[{}] b[{}]", a, b);
+
+        b = std::atomic_fetch_sub(&a, 4);
+        SPDLOG_INFO("a[{}] b[{}]", a, b);
+    }
+
     return 0;
 }
