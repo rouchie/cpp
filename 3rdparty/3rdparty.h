@@ -962,7 +962,9 @@
 //{ set name of thread
     inline void setThreadName(const char *name)
     {
+		#ifndef WIN32
         pthread_setname_np(pthread_self(), name);
+		#endif
     }
 //}
 

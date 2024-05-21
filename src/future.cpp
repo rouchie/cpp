@@ -4,6 +4,7 @@
 
 class A {
     public:
+        A() {}
         A(int v) : _v(v) {}
 
         int value() { return _v; }
@@ -60,7 +61,7 @@ int main()
         SPDLOG_INFO("async deferred");
 
         // 同步策略
-        auto f = std::async(std::launch::deferred, []() {
+        auto f = std::async(std::launch::deferred, []() -> A {
             SPDLOG_INFO("call async deferred");
             ssp(2);
             return A(10000);

@@ -78,7 +78,10 @@ file(
 foreach(mainfile IN LISTS mains)
     get_filename_component(mainname ${mainfile} NAME_WE)
     add_executable(${mainname} ${mainfile})
-    target_link_libraries(${mainname} pthread m dl)
+
+    IF (CMAKE_SYSTEM_NAME MATCHES "Linux")
+        target_link_libraries(${mainname} pthread m dl)
+    ENDIF (CMAKE_SYSTEM_NAME MATCHES "Linux")
 
     install(TARGETS ${mainname} RUNTIME DESTINATION install)
 endforeach()
